@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jaanu ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 190, 210, .45), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(255, 220, 170, .35), transparent 30%),
+        linear-gradient(135deg, #fff5f7, #fff9f1);
+    color: #3d2930;
+    overflow-x: hidden;
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    font-size: 18px;
+    opacity: .6;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+    z-index: 0;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    width: min(620px, 100%);
+    min-height: 590px;
+    background: rgba(255,255,255,.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 30px;
+    box-shadow: 0 25px 70px rgba(120, 70, 85, .15);
+    padding: 55px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.step {
+    display: none;
+    animation: fadeIn .5s ease;
+}
+
+.step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c77b8f;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 58px);
+    line-height: 1.12;
+    margin-bottom: 22px;
+    color: #3a252c;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(29px, 5vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #69545b;
+}
+
+.small {
+    font-size: 14px;
+    margin-top: 18px;
+    color: #a1848d;
+}
+
+.heart-big {
+    font-size: 58px;
+    margin-bottom: 18px;
+    display: block;
+    animation: heartbeat 1.4s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.13); }
+    30% { transform: scale(1); }
+}
+
+.buttons {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    min-height: 65px;
+    position: relative;
+}
+
+.btn {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.yes {
+    background: #d95776;
+    color: white;
+    box-shadow: 0 9px 22px rgba(217,87,118,.28);
+}
+
+.yes:hover {
+    background: #c94768;
+}
+
+.no {
+    background: #f0e5e8;
+    color: #755b64;
+    position: relative;
+}
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.option {
+    border: 1.5px solid #ead5da;
+    background: #fffafb;
+    padding: 18px 14px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b363d;
+    transition: .25s ease;
+}
+
+.option:hover {
+    border-color: #d95776;
+    background: #fff0f3;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(217,87,118,.12);
+}
+
+.option.selected {
+    border-color: #d95776;
+    background: #d95776;
+    color: white;
+}
+
+.back {
+    margin-top: 24px;
+    border: none;
+    background: transparent;
+    color: #a67c87;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.back:hover {
+    color: #d95776;
+}
+
+.final-choice {
+    margin: 25px auto;
+    padding: 18px 22px;
+    border-radius: 18px;
+    background: #fff2f5;
+    color: #66444e;
+    line-height: 1.8;
+}
+
+.final-title {
+    font-size: clamp(42px, 9vw, 70px);
+    color: #d95776;
+    margin-bottom: 15px;
+}
+
+.sparkle {
+    font-size: 28px;
+}
+
+.progress {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 7px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ead7dc;
+    transition: .3s;
+}
+
+.dot.active {
+    background: #d95776;
+    width: 22px;
+    border-radius: 10px;
+}
+
+@media (max-width: 560px) {
+    .card {
+        padding: 48px 22px;
+        min-height: 600px;
+        border-radius: 25px;
+    }
+
+    .option-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .buttons {
+        gap: 12px;
+    }
+
+    .btn {
+        padding: 14px 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <main class="card">
+
+        <div class="progress" id="progress">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <!-- STEP 1 -->
+        <section class="step active" id="step1">
+            <span class="heart-big">❤️</span>
+            <div class="eyebrow">A little something for you</div>
+
+            <h1>Boyfriend's Day is coming, Jaanu</h1>
+
+            <p>
+                And it's going to be our very first one. 🥹
+                <br><br>
+                I know it's just a day on the calendar,
+                but I wanted to make our first Boyfriend's Day
+                a little special.
+            </p>
+
+            <p style="margin-top:20px;">
+                So I made something just for you...
+                <br>
+                And since you're my boyfriend,
+                I think you owe me an answer to one very important question. 👀❤️
+            </p>
+
+            <button class="btn yes" style="margin-top:30px;" onclick="goTo(2)">
+                Ready? 💕
+            </button>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" id="step2">
+            <span class="heart-big">🥺</span>
+            <div class="eyebrow">Important question</div>
+
+            <h2>Jaanu, will you go on a date with me?</h2>
+
+            <div class="buttons" id="escapeArea">
+                <button class="btn yes" onclick="goTo(3)">YES ❤️</button>
+                <button class="btn no" id="noBtn">NO 😐</button>
+            </div>
+
+            <p class="small" id="noMessage">Choose carefully... 👀</p>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" id="step3">
+            <span class="heart-big">💕</span>
+            <div class="eyebrow">Okay, you said yes!</div>
+
+            <h2>What kind of date should we go on?</h2>
+
+            <div class="option-grid">
+                <button class="option" onclick="chooseType('Movie', 4)">
+                    🎬 Movie
+                </button>
+
+                <button class="option" onclick="chooseType('Eating', 5)">
+                    🍜 Eating
+                </button>
+
+                <button class="option" onclick="chooseType('Outing / Activity', 6)">
+                    ✨ Outing / Activity
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" id="step4">
+            <div class="eyebrow">Movie date 🍿</div>
+            <h2>Okay, what are we watching?</h2>
+
+            <div class="option-grid">
+                <button class="option" onclick="finish('Movie', 'Drishyam')">🎬 Drishyam</button>
+                <button class="option" onclick="finish('Movie', 'The Vvan')">🎥 The Vvan</button>
+                <button class="option" onclick="finish('Movie', 'Avengers: Endgame')">🦸 Avengers: Endgame</button>
+            </div>
+
+            <button class="back" onclick="goTo(3)">← Go back</button>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" id="step5">
+            <div class="eyebrow">Food date 😋</div>
+            <h2>Okay, what are we eating?</h2>
+
+            <div class="option-grid">
+                <button class="option" onclick="finish('Eating', 'Italian')">🍝 Italian</button>
+                <button class="option" onclick="finish('Eating', 'Chinese')">🥡 Chinese</button>
+                <button class="option" onclick="finish('Eating', 'Street Food')">🌮 Street Food</button>
+            </div>
+
+            <button class="back" onclick="goTo(3)">← Go back</button>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step" id="step6">
+            <div class="eyebrow">Adventure date ✨</div>
+            <h2>Where should we go?</h2>
+
+            <div class="option-grid">
+                <button class="option" onclick="finish('Outing / Activity', 'Go Karting')">🏎️ Go Karting</button>
+                <button class="option" onclick="finish('Outing / Activity', 'Pottery Date')">🏺 Pottery Date</button>
+                <button class="option" onclick="finish('Outing / Activity', 'Explore Somewhere — Akshardham / India Gate')">🌆 Explore Somewhere</button>
+            </div>
+
+            <button class="back" onclick="goTo(3)">← Go back</button>
+        </section>
+
+        <!-- FINAL -->
+        <section class="step" id="final">
+            <span class="sparkle">✨ 💕 ✨</span>
+            <h1 class="final-title">OK Jannu ❤️</h1>
+
+            <p>Looks like our date is officially happening! 🥰</p>
+
+            <div class="final-choice" id="finalChoice"></div>
+
+            <p style="font-family:'Playfair Display',serif;font-size:22px;">
+                You chose the date.<br>
+                <strong>I'm choosing the company. ❤️</strong>
+            </p>
+
+            <div style="margin-top:30px;font-size:25px;">
+                🥰 &nbsp; 💕 &nbsp; 🥰
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+let selectedType = "";
+
+function goTo(number) {
+    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+
+    const target = document.getElementById('step' + number);
+    if (target) target.classList.add('active');
+
+    updateProgress(number);
+}
+
+function updateProgress(number) {
+    const dots = document.querySelectorAll('.dot');
+
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    if (number === 1) dots[0].classList.add('active');
+    else if (number === 2) dots[1].classList.add('active');
+    else if (number === 3) dots[2].classList.add('active');
+    else if (number === 4 || number === 5 || number === 6) dots[3].classList.add('active');
+    else if (number === 'final') dots[4].classList.add('active');
+}
+
+function chooseType(type, nextStep) {
+    selectedType = type;
+    goTo(nextStep);
+}
+
+/* The NO button escapes when the mouse gets close */
+const noBtn = document.getElementById('noBtn');
+const escapeArea = document.getElementById('escapeArea');
+const noMessage = document.getElementById('noMessage');
+
+const messages = [
+    "Are you sure? 👀",
+    "Nice try, Jaanu 😂",
+    "That button doesn't seem to work...",
+    "Hmm... maybe try YES? ❤️",
+    "You really thought I'd let you say no? 😌",
+    "Wrong answer, Jannu. 😂",
+    "The universe says YES. ✨"
+];
+
+let messageIndex = 0;
+
+function moveNoButton() {
+    const area = escapeArea.getBoundingClientRect();
+    const button = noBtn.getBoundingClientRect();
+
+    const maxX = Math.max(20, area.width - button.width - 10);
+    const maxY = 45;
+
+    const x = Math.random() * maxX - (area.width / 2 - button.width / 2);
+    const y = (Math.random() * maxY) - maxY / 2;
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    noMessage.textContent = messages[messageIndex % messages.length];
+    messageIndex++;
+}
+
+noBtn.addEventListener('mouseenter', moveNoButton);
+noBtn.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    moveNoButton();
+});
+
+noBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    moveNoButton();
+});
+
+/* Final answer */
+function finish(type, choice) {
+    document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+    document.getElementById('final').classList.add('active');
+
+    document.getElementById('finalChoice').innerHTML =
+        `<strong>${type}</strong><br>${choice}`;
+
+    updateProgress('final');
+    createHeartBurst();
+}
+
+/* Floating hearts */
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.textContent = ['❤️','💕','💗','💖','✨'][Math.floor(Math.random()*5)];
+
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+    heart.style.fontSize = (12 + Math.random() * 16) + 'px';
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 900);
+
+function createHeartBurst() {
+    for (let i = 0; i < 20; i++) {
+        setTimeout(createHeart, i * 80);
+    }
+}
+</script>
+
+</body>
+</html>
